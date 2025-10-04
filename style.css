@@ -1,0 +1,255 @@
+/* ===== RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1a1a1a;
+  padding: 15px 50px;
+}
+.navbar .logo {
+  color: #fff;
+  font-size: 22px;
+  font-weight: bold;
+}
+.navbar .nav-links {
+  list-style: none;
+  display: flex;
+}
+.navbar .nav-links li {
+  margin-left: 20px;
+}
+.navbar .nav-links a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 16px;
+  transition: 0.3s;
+}
+.navbar .nav-links a:hover {
+  color: #f5c542;
+}
+
+/* ===== HERO SECTION ===== */
+.hero {
+  height: 90vh;
+  background: url('images/hotel-hero.jpg') no-repeat center center/cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+}
+.hero h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+.hero p {
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+.btn {
+  padding: 12px 25px;
+  background: #f5c542;
+  color: #000;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+.btn:hover {
+  background: #fff;
+}
+
+/* ===== ABOUT SECTION ===== */
+.about {
+  padding: 50px;
+  text-align: center;
+}
+.about h2 {
+  margin-bottom: 20px;
+  font-size: 28px;
+}
+.about p {
+  max-width: 600px;
+  margin: auto;
+  line-height: 1.6;
+}
+
+/* ===== ROOMS PAGE ===== */
+.rooms {
+  padding: 50px;
+  text-align: center;
+}
+.rooms h2 {
+  font-size: 30px;
+  margin-bottom: 30px;
+}
+.room-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+.room-card {
+  background: #f9f9f9;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+.room-card:hover {
+  transform: translateY(-5px);
+}
+.room-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+.room-card h3 {
+  font-size: 20px;
+  margin: 15px 0 5px;
+}
+.room-card p {
+  margin: 5px 15px;
+  font-size: 14px;
+  color: #333;
+}
+.room-card .price {
+  font-weight: bold;
+  color: #f5c542;
+  margin: 10px 0;
+}
+.room-card .btn {
+  display: inline-block;
+  margin: 10px 0 20px;
+}
+
+/* ===== BOOKING FORM ===== */
+.booking {
+  padding: 50px;
+  text-align: center;
+  background: #f5f5f5;
+}
+.booking h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+#bookingForm {
+  max-width: 400px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+#bookingForm label {
+  text-align: left;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+#bookingForm input,
+#bookingForm select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+#bookingForm button {
+  padding: 12px;
+  background: #f5c542;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+#bookingForm button:hover {
+  background: #000;
+  color: #fff;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #1a1a1a;
+  color: #fff;
+  margin-top: 30px;
+}
+/* ===== CONTACT PAGE ===== */
+.contact {
+  padding: 50px;
+  text-align: center;
+}
+.contact h2 {
+  font-size: 28px;
+  margin-bottom: 15px;
+}
+.contact p {
+  margin-bottom: 30px;
+  color: #555;
+}
+.contact-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  max-width: 1000px;
+  margin: auto;
+}
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.contact-form input,
+.contact-form textarea {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.contact-form button {
+  padding: 12px;
+  background: #f5c542;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+.contact-form button:hover {
+  background: #000;
+  color: #fff;
+}
+.contact-info {
+  text-align: left;
+}
+.contact-info h3 {
+  margin-bottom: 15px;
+}
+.contact-info p {
+  margin: 8px 0;
+}
+.map {
+  margin-top: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .contact-container {
+    grid-template-columns: 1fr;
+  }
+}
+body {
+  background: linear-gradient(135deg, #007BFF, #00C6FF);
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+}

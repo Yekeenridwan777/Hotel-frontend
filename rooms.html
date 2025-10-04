@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Rooms - Minister of Enjoyment Hotel</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Navbar */
+    header {
+      background: linear-gradient(90deg, #1e3c72, #2a5298);
+      color: #fff;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 20px;
+      color: gold;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      font-size: 15px;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: gold;
+    }
+
+    .rooms-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 30px;
+    }
+
+    .room-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.2s;
+    }
+
+    .room-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .room-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .room-info {
+      padding: 20px;
+    }
+
+    .room-info h2 {
+      margin: 0 0 10px;
+      font-size: 20px;
+      color: #333;
+    }
+
+    .room-info p {
+      color: #555;
+      font-size: 15px;
+      margin: 0 0 15px;
+    }
+
+    .room-info button {
+      width: 100%;
+      padding: 12px;
+      background: #007bff;
+      color: #fff;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .room-info button:hover {
+      background: #0056b3;
+    }
+
+    /* Booking modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      width: 400px;
+      max-width: 90%;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    }
+
+    .modal-content h3 {
+      margin-top: 0;
+      text-align: center;
+      color: #007bff;
+    }
+
+    .modal-content input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    .modal-content button {
+      width: 100%;
+      padding: 12px;
+      background: #28a745;
+      color: #fff;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background 0.3s ease;
+    }
+
+    .modal-content button:hover {
+      background: #218838;
+    }
+
+    .close-btn {
+      background: #dc3545;
+      margin-top: 10px;
+    }
+
+    .close-btn:hover {
+      background: #b02a37;
+    }
+
+    .message {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    /* Footer */
+    footer {
+      background: #1e3c72;
+      color: white;
+      text-align: center;
+      padding: 20px 10px;
+      margin-top: 40px;
+    }
+    footer p {
+      margin: 5px 0;
+      font-size: 14px;
+    }
+    footer a {
+      color: gold;
+      margin: 0 8px;
+      text-decoration: none;
+    }
+
+    /* 📱 Mobile responsiveness */
+    @media (max-width: 600px) {
+      nav a {
+        font-size: 14px;
+        margin: 0 5px;
+      }
+      .rooms-container {
+        padding: 15px;
+        gap: 15px;
+      }
+      .room-info h2 {
+        font-size: 18px;
+      }
+      .room-info p {
+        font-size: 14px;
+      }
+      .modal-content {
+        width: 95%;
+        padding: 15px;
+      }
+      .modal-content input,
+      .modal-content button {
+        font-size: 14px;
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <header>
+    <h1>Minister of Enjoyment Hotel</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="rooms.html">Rooms</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Rooms Section -->
+  <div class="rooms-container">
+    <div class="room-card">
+      <img src="https://picsum.photos/400/200?random=1" alt="Deluxe Room">
+      <div class="room-info">
+        <h2>Deluxe Room</h2>
+        <p>Spacious room with king-sized bed, ensuite bathroom, and city view.</p>
+        <button onclick="openBooking('Deluxe Room')">Book Now</button>
+      </div>
+    </div>
+
+    <div class="room-card">
+      <img src="https://picsum.photos/400/200?random=2" alt="Executive Suite">
+      <div class="room-info">
+        <h2>Executive Suite</h2>
+        <p>Luxury suite with private lounge, balcony, and premium amenities.</p>
+        <button onclick="openBooking('Executive Suite')">Book Now</button>
+      </div>
+    </div>
+
+    <div class="room-card">
+      <img src="https://picsum.photos/400/200?random=3" alt="Standard Room">
+      <div class="room-info">
+        <h2>Standard Room</h2>
+        <p>Comfortable room with queen bed, desk, and complimentary Wi-Fi.</p>
+        <button onclick="openBooking('Standard Room')">Book Now</button>
+      </div>
+    </div>
+
+    <div class="room-card">
+      <img src="https://picsum.photos/400/200?random=4" alt="Family Room">
+      <div class="room-info">
+        <h2>Family Room</h2>
+        <p>Large room perfect for families, includes two beds and a play area.</p>
+        <button onclick="openBooking('Family Room')">Book Now</button>
+      </div>
+    </div>
+
+    <div class="room-card">
+      <img src="https://picsum.photos/400/200?random=5" alt="Penthouse Suite">
+      <div class="room-info">
+        <h2>Penthouse Suite</h2>
+        <p>Exclusive suite with panoramic views, jacuzzi, and private service.</p>
+        <button onclick="openBooking('Penthouse Suite')">Book Now</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Booking Modal -->
+  <div id="bookingModal" class="modal">
+    <div class="modal-content">
+      <h3 id="roomName">Book Room</h3>
+      <form id="bookingForm">
+        <input type="text" id="guestName" placeholder="Your Name" required>
+        <input type="email" id="guestEmail" placeholder="Your Email" required>
+        <input type="tel" id="guestPhone" placeholder="Your Phone Number" required>
+        <input type="date" id="checkIn" required>
+        <input type="date" id="checkOut" required>
+        <input type="number" id="guests" placeholder="Number of Guests" min="1" required>
+        <button type="submit">Confirm Booking</button>
+        <button type="button" class="close-btn" onclick="closeBooking()">Cancel</button>
+      </form>
+      <div class="message" id="bookingMsg"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Minister of Enjoyment Hotel. All rights reserved.</p>
+    <p>
+      Follow us:
+      <a href="#">Facebook</a> | 
+      <a href="#">Instagram</a> | 
+      <a href="#">Twitter</a>
+    </p>
+  </footer>
+
+  <script>
+    const modal = document.getElementById("bookingModal");
+    const roomNameDisplay = document.getElementById("roomName");
+    const bookingMsg = document.getElementById("bookingMsg");
+    const bookingForm = document.getElementById("bookingForm");
+    let selectedRoom = "";
+
+    function openBooking(room) {
+      selectedRoom = room;
+      roomNameDisplay.textContent = "Book " + room;
+      modal.style.display = "flex";
+      bookingMsg.textContent = "";
+    }
+
+    function closeBooking() {
+      modal.style.display = "none";
+      bookingForm.reset();
+    }
+
+    bookingForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      bookingMsg.textContent = "⏳ Sending...";
+      bookingMsg.style.color = "black";
+
+      const data = {
+        name: document.getElementById("guestName").value,
+        email: document.getElementById("guestEmail").value,
+        phone: document.getElementById("guestPhone").value,
+        checkIn: document.getElementById("checkIn").value,
+        checkOut: document.getElementById("checkOut").value,
+        guests: document.getElementById("guests").value,
+        room: selectedRoom,
+      };
+
+      try {
+        const res = await fetch("https://hotel-booking-oujg.onrender.com/book", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        });
+
+        const result = await res.json();
+
+        if (result.success) {
+          bookingMsg.textContent = "✅ Booking request sent successfully!";
+          bookingMsg.style.color = "green";
+          bookingForm.reset();
+          setTimeout(closeBooking, 2000);
+        } else {
+          bookingMsg.textContent = "❌ Could not send booking request.";
+          bookingMsg.style.color = "red";
+        }
+      } catch (error) {
+        bookingMsg.textContent = "⚠️ Server error. Try again later.";
+        bookingMsg.style.color = "red";
+      }
+    });
+
+    // Close modal on outside click
+    window.onclick = (e) => {
+      if (e.target === modal) {
+        closeBooking();
+      }
+    };
+  </script>
+</body>
+</html>
+
+
