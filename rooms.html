@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Our Rooms - Minister of Enjoyment Hotel</title>
+  <title>Our Rooms - Minista of Enjoyment Hotel</title>
   <style>
     body {
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -14,7 +14,7 @@
 
     /* Navbar */
     header {
-      background: linear-gradient(90deg, #1e3c72, #2a5298);
+      background:  rgb(240, 131, 6);
       color: #fff;
       padding: 15px 20px;
       display: flex;
@@ -24,7 +24,7 @@
     header h1 {
       margin: 0;
       font-size: 20px;
-      color: gold;
+      color: white;
     }
     nav a {
       color: white;
@@ -81,7 +81,7 @@
     .room-info button {
       width: 100%;
       padding: 12px;
-      background: #007bff;
+      background:  rgb(240, 131, 6);
       color: #fff;
       font-size: 16px;
       border: none;
@@ -91,7 +91,7 @@
     }
 
     .room-info button:hover {
-      background: #0056b3;
+      background:  rgb(243, 101, 6);
     }
 
     /* Booking modal */
@@ -118,7 +118,7 @@
     .modal-content h3 {
       margin-top: 0;
       text-align: center;
-      color: #007bff;
+      color:  rgb(240, 131, 6);
     }
 
     .modal-content input {
@@ -133,7 +133,7 @@
     .modal-content button {
       width: 100%;
       padding: 12px;
-      background: #28a745;
+      background:  rgb(240, 131, 6);
       color: #fff;
       font-size: 16px;
       border: none;
@@ -144,7 +144,7 @@
     }
 
     .modal-content button:hover {
-      background: #218838;
+      background:  rgb(250, 103, 4);
     }
 
     .close-btn {
@@ -164,7 +164,7 @@
 
     /* Footer */
     footer {
-      background: #1e3c72;
+      background:  rgb(240, 131, 6);
       color: white;
       text-align: center;
       padding: 20px 10px;
@@ -175,7 +175,7 @@
       font-size: 14px;
     }
     footer a {
-      color: gold;
+      color: white;
       margin: 0 8px;
       text-decoration: none;
     }
@@ -224,7 +224,7 @@
     <div class="room-card">
       <img src="https://picsum.photos/400/200?random=1" alt="Deluxe Room">
       <div class="room-info">
-        <h2>Deluxe Room</h2>
+        <h2>Room 1</h2>
         <p>Spacious room with king-sized bed, ensuite bathroom, and city view.</p>
         <button onclick="openBooking('Deluxe Room')">Book Now</button>
       </div>
@@ -233,7 +233,7 @@
     <div class="room-card">
       <img src="https://picsum.photos/400/200?random=2" alt="Executive Suite">
       <div class="room-info">
-        <h2>Executive Suite</h2>
+        <h2>Room 2</h2>
         <p>Luxury suite with private lounge, balcony, and premium amenities.</p>
         <button onclick="openBooking('Executive Suite')">Book Now</button>
       </div>
@@ -242,7 +242,7 @@
     <div class="room-card">
       <img src="https://picsum.photos/400/200?random=3" alt="Standard Room">
       <div class="room-info">
-        <h2>Standard Room</h2>
+        <h2>Room 3</h2>
         <p>Comfortable room with queen bed, desk, and complimentary Wi-Fi.</p>
         <button onclick="openBooking('Standard Room')">Book Now</button>
       </div>
@@ -251,7 +251,7 @@
     <div class="room-card">
       <img src="https://picsum.photos/400/200?random=4" alt="Family Room">
       <div class="room-info">
-        <h2>Family Room</h2>
+        <h2>Room 4</h2>
         <p>Large room perfect for families, includes two beds and a play area.</p>
         <button onclick="openBooking('Family Room')">Book Now</button>
       </div>
@@ -260,7 +260,7 @@
     <div class="room-card">
       <img src="https://picsum.photos/400/200?random=5" alt="Penthouse Suite">
       <div class="room-info">
-        <h2>Penthouse Suite</h2>
+        <h2>Room 5</h2>
         <p>Exclusive suite with panoramic views, jacuzzi, and private service.</p>
         <button onclick="openBooking('Penthouse Suite')">Book Now</button>
       </div>
@@ -360,6 +360,50 @@
         closeBooking();
       }
     };
+    
+async function updateRoomAvailability() {
+  try {
+    const res = await fetch("/api/rooms/status");
+    const data = await res.json();
+    if (!data.success) return;
+
+    // Convert room statuses into a map
+    const bookedRooms = {};
+    data.rooms.forEach(r => {
+      if (r.status === "booked") {
+        bookedRooms[r.room.trim().toLowerCase()] = true;
+      }
+    });
+
+    // Loop through all rooms on the page
+    document.querySelectorAll(".room").forEach(roomDiv => {
+      const roomName = roomDiv.getAttribute("data-room").trim().toLowerCase();
+      const btn = roomDiv.querySelector(".book-btn");
+
+      if (bookedRooms[roomName]) {
+        btn.disabled = true;
+        btn.textContent = "Booked";
+        btn.style.background = "#999";
+        btn.style.cursor = "not-allowed";
+        roomDiv.style.opacity = "0.7";
+      } else {
+        btn.disabled = false;
+        btn.textContent = "Book Now";
+        btn.style.background = "#28a745";
+        btn.style.cursor = "pointer";
+        roomDiv.style.opacity = "1";
+      }
+    });
+  } catch (err) {
+    console.error("Error fetching room status:", err);
+  }
+}
+
+// Run it once when page loads
+updateRoomAvailability();
+
+// Optional: refresh every 30 seconds
+setInterval(updateRoomAvailability, 30000);
   </script>
 </body>
 </html>
