@@ -14,7 +14,7 @@
 
     /* Navbar */
     header {
-      background:  rgb(240, 131, 6);
+      background:  rgb(97, 45, 2);
       color: #fff;
       padding: 15px 20px;
       display: flex;
@@ -81,7 +81,7 @@
     .room-info button {
       width: 100%;
       padding: 12px;
-      background:  rgb(240, 131, 6);
+      background:  rgb(97, 45, 2);
       color: #fff;
       font-size: 16px;
       border: none;
@@ -118,7 +118,7 @@
     .modal-content h3 {
       margin-top: 0;
       text-align: center;
-      color:  rgb(240, 131, 6);
+      color:  rgb(97, 45, 2);
     }
 
     .modal-content input {
@@ -133,7 +133,7 @@
     .modal-content button {
       width: 100%;
       padding: 12px;
-      background:  rgb(240, 131, 6);
+      background:  rgb(97, 45, 2);
       color: #fff;
       font-size: 16px;
       border: none;
@@ -144,16 +144,16 @@
     }
 
     .modal-content button:hover {
-      background:  rgb(250, 103, 4);
+      background:  rgb(97, 45, 2);
     }
 
     .close-btn {
-      background: #dc3545;
+      background: rgb(97, 45, 2);
       margin-top: 10px;
     }
 
     .close-btn:hover {
-      background: #b02a37;
+      background: rgb(97, 45, 2);
     }
 
     .message {
@@ -164,7 +164,7 @@
 
     /* Footer */
     footer {
-      background:  rgb(240, 131, 6);
+      background:  rgb(97, 45, 2);
       color: white;
       text-align: center;
       padding: 20px 10px;
@@ -211,7 +211,7 @@
 <body>
   <!-- Navbar -->
   <header>
-    <h1>Minister of Enjoyment Hotel</h1>
+    <h1>Minista of Enjoyment Hotel</h1>
     <nav>
       <a href="index.html">Home</a>
       <a href="rooms.html">Rooms</a>
@@ -221,48 +221,48 @@
 
   <!-- Rooms Section -->
   <div class="rooms-container">
-    <div class="room-card">
+    <div class="room-card room" data-room="Room 1">
       <img src="https://picsum.photos/400/200?random=1" alt="Deluxe Room">
       <div class="room-info">
         <h2>Room 1</h2>
         <p>Spacious room with king-sized bed, ensuite bathroom, and city view.</p>
-        <button onclick="openBooking('Deluxe Room')">Book Now</button>
+        <button onclick="openBooking('Room 1')">Book Now</button>
       </div>
     </div>
 
-    <div class="room-card">
+    <div class="room-card room" data-room="Room 2">
       <img src="https://picsum.photos/400/200?random=2" alt="Executive Suite">
       <div class="room-info">
         <h2>Room 2</h2>
         <p>Luxury suite with private lounge, balcony, and premium amenities.</p>
-        <button onclick="openBooking('Executive Suite')">Book Now</button>
+        <button onclick="openBooking('Room 2')">Book Now</button>
       </div>
     </div>
 
-    <div class="room-card">
+    <div class="room-card room" data-room="Room 3"></div>
       <img src="https://picsum.photos/400/200?random=3" alt="Standard Room">
       <div class="room-info">
         <h2>Room 3</h2>
         <p>Comfortable room with queen bed, desk, and complimentary Wi-Fi.</p>
-        <button onclick="openBooking('Standard Room')">Book Now</button>
+        <button onclick="openBooking('Room 3')">Book Now</button>
       </div>
     </div>
 
-    <div class="room-card">
+    <div class="room-card room" data-room="Room 4">
       <img src="https://picsum.photos/400/200?random=4" alt="Family Room">
       <div class="room-info">
         <h2>Room 4</h2>
         <p>Large room perfect for families, includes two beds and a play area.</p>
-        <button onclick="openBooking('Family Room')">Book Now</button>
+        <button onclick="openBooking('Room 4')">Book Now</button>
       </div>
     </div>
 
-    <div class="room-card">
+    <div class="room-card room" data-room="Room 5"></div>
       <img src="https://picsum.photos/400/200?random=5" alt="Penthouse Suite">
       <div class="room-info">
         <h2>Room 5</h2>
         <p>Exclusive suite with panoramic views, jacuzzi, and private service.</p>
-        <button onclick="openBooking('Penthouse Suite')">Book Now</button>
+        <button onclick="openBooking('Room 5')">Book Now</button>
       </div>
     </div>
   </div>
@@ -287,7 +287,7 @@
 
   <!-- Footer -->
   <footer>
-    <p>&copy; 2025 Minister of Enjoyment Hotel. All rights reserved.</p>
+    <p>&copy; 2025 Minista of Enjoyment Hotel. All rights reserved.</p>
     <p>
       Follow us:
       <a href="#">Facebook</a> | 
