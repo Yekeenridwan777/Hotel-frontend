@@ -222,47 +222,47 @@
   <!-- Rooms Section -->
   <div class="rooms-container">
     <div class="room-card room" data-room="Room 1">
-      <img src="https://picsum.photos/400/200?random=1" alt="Deluxe Room">
+      <img src="https://picsum.photos/400/200?random=1" alt="Room 1">
       <div class="room-info">
         <h2>Room 1</h2>
         <p>Spacious room with king-sized bed, ensuite bathroom, and city view.</p>
-        <button onclick="openBooking('Room 1')">Book Now</button>
+        <button class="book-btn" onclick="openBooking('Room 1')">Book Now</button>
       </div>
     </div>
 
-    <div class="room-card room" data-room="Room 2">
-      <img src="https://picsum.photos/400/200?random=2" alt="Executive Suite">
+    <div class="room-card room" data-room="Room 2">
+      <img src="https://picsum.photos/400/200?random=2" alt="Room 2">
       <div class="room-info">
         <h2>Room 2</h2>
         <p>Luxury suite with private lounge, balcony, and premium amenities.</p>
-        <button onclick="openBooking('Room 2')">Book Now</button>
+        <button class="book-btn" onclick="openBooking('Room 2')">Book Now</button>
       </div>
     </div>
 
-    <div class="room-card room" data-room="Room 3"></div>
-      <img src="https://picsum.photos/400/200?random=3" alt="Standard Room">
+    <div class="room-card room" data-room="Room 3">
+      <img src="https://picsum.photos/400/200?random=3" alt="Room 3">
       <div class="room-info">
         <h2>Room 3</h2>
         <p>Comfortable room with queen bed, desk, and complimentary Wi-Fi.</p>
-        <button onclick="openBooking('Room 3')">Book Now</button>
+        <button class="book-btn" onclick="openBooking('Room 3')">Book Now</button>
       </div>
     </div>
 
-    <div class="room-card room" data-room="Room 4">
-      <img src="https://picsum.photos/400/200?random=4" alt="Family Room">
+    <div class="room-card room" data-room="Room 4">
+      <img src="https://picsum.photos/400/200?random=4" alt="Room 4">
       <div class="room-info">
         <h2>Room 4</h2>
         <p>Large room perfect for families, includes two beds and a play area.</p>
-        <button onclick="openBooking('Room 4')">Book Now</button>
+        <button class="book-btn" onclick="openBooking('Room 4')">Book Now</button>
       </div>
     </div>
 
-    <div class="room-card room" data-room="Room 5"></div>
-      <img src="https://picsum.photos/400/200?random=5" alt="Penthouse Suite">
+    <div class="room-card room" data-room="Room 5">
+      <img src="https://picsum.photos/400/200?random=5" alt="Room 5">
       <div class="room-info">
         <h2>Room 5</h2>
         <p>Exclusive suite with panoramic views, jacuzzi, and private service.</p>
-        <button onclick="openBooking('Room 5')">Book Now</button>
+        <button class="book-btn" onclick="openBooking('Room 5')">Book Now</button>
       </div>
     </div>
   </div>
@@ -354,56 +354,48 @@
       }
     });
 
-    // Close modal on outside click
     window.onclick = (e) => {
-      if (e.target === modal) {
-        closeBooking();
-      }
+      if (e.target === modal) closeBooking();
     };
-    
-async function updateRoomAvailability() {
-  try {
-    const res = await fetch("/api/rooms/status");
-    const data = await res.json();
-    if (!data.success) return;
 
-    // Convert room statuses into a map
-    const bookedRooms = {};
-    data.rooms.forEach(r => {
-      if (r.status === "booked") {
-        bookedRooms[r.room.trim().toLowerCase()] = true;
+    async function updateRoomAvailability() {
+      try {
+        const res = await fetch("https://hotel-booking-oujg.onrender.com/api/rooms/status");
+        const data = await res.json();
+        if (!data.success) return;
+
+        const bookedRooms = {};
+        data.rooms.forEach(r => {
+          if (r.status === "booked") {
+            bookedRooms[r.name.trim().toLowerCase()] = true;
+          }
+        });
+
+        document.querySelectorAll(".room").forEach(roomDiv => {
+          const roomName = roomDiv.getAttribute("data-room").trim().toLowerCase();
+          const btn = roomDiv.querySelector(".book-btn");
+
+          if (bookedRooms[roomName]) {
+            btn.disabled = true;
+            btn.textContent = "Booked";
+            btn.style.background = "#999";
+            btn.style.cursor = "not-allowed";
+            roomDiv.style.opacity = "0.7";
+          } else {
+            btn.disabled = false;
+            btn.textContent = "Book Now";
+            btn.style.background = "#28a745";
+            btn.style.cursor = "pointer";
+            roomDiv.style.opacity = "1";
+          }
+        });
+      } catch (err) {
+        console.error("Error fetching room status:", err);
       }
-    });
+    }
 
-    // Loop through all rooms on the page
-    document.querySelectorAll(".room").forEach(roomDiv => {
-      const roomName = roomDiv.getAttribute("data-room").trim().toLowerCase();
-      const btn = roomDiv.querySelector(".book-btn");
-
-      if (bookedRooms[roomName]) {
-        btn.disabled = true;
-        btn.textContent = "Booked";
-        btn.style.background = "#999";
-        btn.style.cursor = "not-allowed";
-        roomDiv.style.opacity = "0.7";
-      } else {
-        btn.disabled = false;
-        btn.textContent = "Book Now";
-        btn.style.background = "#28a745";
-        btn.style.cursor = "pointer";
-        roomDiv.style.opacity = "1";
-      }
-    });
-  } catch (err) {
-    console.error("Error fetching room status:", err);
-  }
-}
-
-// Run it once when page loads
-updateRoomAvailability();
-
-// Optional: refresh every 30 seconds
-setInterval(updateRoomAvailability, 30000);
+    updateRoomAvailability();
+    setInterval(updateRoomAvailability, 30000);
   </script>
 </body>
 </html>
