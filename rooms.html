@@ -359,40 +359,42 @@
     };
 
     async function updateRoomAvailability() {
-      try {
-        const res = await fetch("https://hotel-booking-oujg.onrender.com/api/rooms/status");
-        const data = await res.json();
-        if (!data.success) return;
+  try {
+    const res = await fetch("https://hotel-booking-oujg.onrender.com/api/rooms/status");
+    const data = await res.json();
+    if (!data.success) return;
 
-        const bookedRooms = {};
-        data.rooms.forEach(r => {
-          if (r.status === "booked") {
-            bookedRooms[r.name.trim().toLowerCase()] = true;
-          }
-        });
-
-        document.querySelectorAll(".room").forEach(roomDiv => {
-          const roomName = roomDiv.getAttribute("data-room").trim().toLowerCase();
-          const btn = roomDiv.querySelector(".book-btn");
-
-          if (bookedRooms[roomName]) {
-            btn.disabled = true;
-            btn.textContent = "Booked";
-            btn.style.background = "#999";
-            btn.style.cursor = "not-allowed";
-            roomDiv.style.opacity = "0.7";
-          } else {
-            btn.disabled = false;
-            btn.textContent = "Book Now";
-            btn.style.background = "#28a745";
-            btn.style.cursor = "pointer";
-            roomDiv.style.opacity = "1";
-          }
-        });
-      } catch (err) {
-        console.error("Error fetching room status:", err);
+    // Use r.name (since backend returns name)
+    const bookedRooms = {};
+    data.rooms.forEach(r => {
+      if (r.status === "booked") {
+        bookedRooms[r.name.trim().toLowerCase()] = true;
       }
-    }
+    });
+
+    // Update all room buttons visually
+    document.querySelectorAll(".room").forEach(roomDiv => {
+      const roomName = roomDiv.getAttribute("data-room").trim().toLowerCase();
+      const btn = roomDiv.querySelector("button");
+
+      if (bookedRooms[roomName]) {
+        btn.disabled = true;
+        btn.textContent = "Booked";
+        btn.style.background = "#999";
+        btn.style.cursor = "not-allowed";
+        roomDiv.style.opacity = "0.7";
+      } else {
+        btn.disabled = false;
+        btn.textContent = "Book Now";
+        btn.style.background = "#28a745";
+        btn.style.cursor = "pointer";
+        roomDiv.style.opacity = "1";
+      }
+    });
+  } catch (err) {
+    console.error("Error fetching room status:", err);
+  }
+}
 
     updateRoomAvailability();
     setInterval(updateRoomAvailability, 30000);
