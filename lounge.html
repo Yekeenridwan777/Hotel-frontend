@@ -77,8 +77,9 @@
         <option value="Corporate Event">Corporate Event</option>
         <option value="Other Party">Other Party</option>
       </select>
+
       <label for="loungeGuests">Number of Guests</label>
-  <input type="number" id="loungeGuests" name="guests" placeholder="Enter number of guests" required />
+      <input type="number" id="loungeGuests" name="guests" placeholder="Enter number of guests" required />
 
       <label for="date">Date:</label>
       <input type="date" id="date" required />
@@ -105,7 +106,7 @@
         email: document.getElementById("email").value,
         phone: document.getElementById("phone").value,
         tableType: document.getElementById("tableType").value,
-        guests: document.getElementById("LoungeGuests").value,
+        LoungeGuest: document.getElementById("loungeGuests").value, // fixed case-sensitive mismatch
         date: document.getElementById("date").value,
         time: document.getElementById("time").value,
         message: document.getElementById("message").value,
