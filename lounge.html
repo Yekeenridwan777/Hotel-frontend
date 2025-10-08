@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lounge Booking | Your Hotel Name</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f7f7f7;
+      color: #333;
+    }
+
+    .lounge-container {
+      max-width: 800px;
+      margin: 80px auto;
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .lounge-container h1 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #222;
+    }
+
+    .lounge-container form input, 
+    .lounge-container form select,
+    .lounge-container form textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    .lounge-container form button {
+      background: #28a745;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 16px;
+    }
+
+    .lounge-container form button:hover {
+      background: #218838;
+    }
+
+    .msg {
+      margin-top: 10px;
+      text-align: center;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <div class="lounge-container">
+    <h1>Book a Lounge Table or Party</h1>
+
+    <form id="loungeForm">
+      <input type="text" id="name" placeholder="Your Name" required />
+      <input type="email" id="email" placeholder="Your Email" required />
+      <input type="tel" id="phone" placeholder="Your Phone Number" required />
+      
+      <label for="tableType">Choose Booking Type:</label>
+      <select id="tableType" required>
+        <option value="">-- Select Type --</option>
+        <option value="Table for 2">Table for 2</option>
+        <option value="Table for 4">Table for 4</option>
+        <option value="Birthday Party">Birthday Party</option>
+        <option value="Corporate Event">Corporate Event</option>
+        <option value="Other Party">Other Party</option>
+      </select>
+
+      <label for="date">Date:</label>
+      <input type="date" id="date" required />
+
+      <label for="time">Time:</label>
+      <input type="time" id="time" required />
+
+      <textarea id="message" rows="4" placeholder="Additional Requests (optional)"></textarea>
+
+      <button type="submit">Submit Booking</button>
+      <p class="msg" id="msg"></p>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("loungeForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const msg = document.getElementById("msg");
+      msg.textContent = "⏳ Sending your request...";
+      msg.style.color = "black";
+
+      const data = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        phone: document.getElementById("phone").value,
+        tableType: document.getElementById("tableType").value,
+        date: document.getElementById("date").value,
+        time: document.getElementById("time").value,
+        message: document.getElementById("message").value,
+      };
+
+      try {
+        const res = await fetch("https://hotel-booking-oujg.onrender.com/lounge", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        });
+
+        const result = await res.json();
+
+        if (result.success) {
+          msg.textContent = "✅ Lounge booking request sent successfully!";
+          msg.style.color = "green";
+          e.target.reset();
+        } else {
+          msg.textContent = "❌ Could not send booking request.";
+          msg.style.color = "red";
+        }
+      } catch (error) {
+        msg.textContent = "⚠ Server error. Try again later.";
+        msg.style.color = "red";
+      }
+    });
+  </script>
+</body>
+</html>
