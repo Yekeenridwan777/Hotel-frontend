@@ -3,59 +3,125 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lounge Booking | Your Hotel Name</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Lounge Booking | Minista of Enjoyment Lounge & Suites</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       font-family: 'Poppins', sans-serif;
-      background: #f7f7f7;
-      color: #333;
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+        url("https://images.unsplash.com/photo-1566073771259-6a8506099945") center/cover no-repeat;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
     }
 
     .lounge-container {
-      max-width: 800px;
-      margin: 80px auto;
-      background: white;
-      padding: 40px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      width: 100%;
+      max-width: 600px;
+      padding: 40px 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+      animation: fadeIn 1.2s ease;
     }
 
     .lounge-container h1 {
       text-align: center;
       margin-bottom: 25px;
-      color: #222;
+      color: #ffd700;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      letter-spacing: 1px;
+      animation: slideDown 1s ease;
     }
 
-    .lounge-container form input, 
-    .lounge-container form select,
-    .lounge-container form textarea {
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    form input,
+    form select,
+    form textarea {
       width: 100%;
-      padding: 12px;
+      padding: 12px 15px;
       margin: 10px 0;
-      border: 1px solid #ccc;
+      border: 1px solid rgba(255,255,255,0.3);
       border-radius: 8px;
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      font-size: 1rem;
+      outline: none;
+      transition: 0.3s ease;
     }
 
-    .lounge-container form button {
-      background: rgb(97, 45, 2);
-      color: white;
+    form input::placeholder,
+    form textarea::placeholder {
+      color: #ccc;
+    }
+
+    form input:focus,
+    form select:focus,
+    form textarea:focus {
+      border-color: #ffd700;
+      box-shadow: 0 0 8px rgba(255,215,0,0.4);
+    }
+
+    form label {
+      font-weight: 600;
+      margin-top: 10px;
+      color: #ffd700;
+      font-size: 0.95rem;
+    }
+
+    button {
+      background: #ffd700;
+      color: #000;
       padding: 12px 20px;
       border: none;
       border-radius: 8px;
       cursor: pointer;
-      width: 100%;
       font-size: 16px;
+      font-weight: 600;
+      margin-top: 15px;
+      transition: all 0.3s ease;
     }
 
-    .lounge-container form button:hover {
-      background: rgb(97, 45, 2);
+    button:hover {
+      background: #c9a200;
+      transform: scale(1.03);
     }
 
     .msg {
-      margin-top: 10px;
+      margin-top: 12px;
       text-align: center;
       font-weight: 500;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @media (max-width: 600px) {
+      .lounge-container {
+        padding: 30px 20px;
+      }
     }
   </style>
 </head>
@@ -67,7 +133,7 @@
       <input type="text" id="name" placeholder="Your Name" required />
       <input type="email" id="email" placeholder="Your Email" required />
       <input type="tel" id="phone" placeholder="Your Phone Number" required />
-      
+
       <label for="tableType">Choose Booking Type:</label>
       <select id="tableType" required>
         <option value="">-- Select Type --</option>
@@ -99,14 +165,14 @@
       e.preventDefault();
       const msg = document.getElementById("msg");
       msg.textContent = "⏳ Sending your request...";
-      msg.style.color = "black";
+      msg.style.color = "white";
 
       const data = {
         name: document.getElementById("name").value,
         email: document.getElementById("email").value,
         phone: document.getElementById("phone").value,
         tableType: document.getElementById("tableType").value,
-        LoungeGuest: document.getElementById("LoungeGuests").value, // fixed case-sensitive mismatch
+        LoungeGuest: document.getElementById("LoungeGuests").value,
         date: document.getElementById("date").value,
         time: document.getElementById("time").value,
         message: document.getElementById("message").value,
@@ -123,15 +189,15 @@
 
         if (result.success) {
           msg.textContent = "✅ Lounge booking request sent successfully!";
-          msg.style.color = "green";
+          msg.style.color = "#00ff6a";
           e.target.reset();
         } else {
           msg.textContent = "❌ Could not send booking request.";
-          msg.style.color = "red";
+          msg.style.color = "#ff4444";
         }
       } catch (error) {
         msg.textContent = "⚠ Server error. Try again later.";
-        msg.style.color = "red";
+        msg.style.color = "#ff4444";
       }
     });
   </script>

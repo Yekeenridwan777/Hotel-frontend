@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Minista of Enjoyment Lounge and Suites</title>
-  <link rel="stylesheet" href="styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <style>
-    /* Reset */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
     body {
-      font-family: 'Poppins', sans-serif;
+      font-family: "Poppins", sans-serif;
       line-height: 1.6;
-      background: url("https://images.unsplash.com/photo-1566073771259-6a8506099945") center/cover no-repeat;
-      color: #333;
+      color: #fff;
+      background-color: #0e0b09;
+      overflow-x: hidden;
     }
 
     /* Navbar */
@@ -26,6 +28,8 @@
       position: sticky;
       top: 0;
       z-index: 1000;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+      animation: fadeDown 1s ease-in-out;
     }
 
     .nav-container {
@@ -36,34 +40,39 @@
       align-items: center;
     }
 
-    /* Styled Logo */
     .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.6rem;
+      font-family: "Playfair Display", serif;
+      font-size: 1.8rem;
       font-weight: 700;
-      color: white; 
+      color: #ffd700;
       letter-spacing: 1px;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
     }
 
     nav ul {
       list-style: none;
       display: flex;
-      gap: 20px;
+      gap: 25px;
     }
 
     nav ul li a {
       color: white;
       text-decoration: none;
       font-weight: 500;
-      transition: color 0.3s;
+      transition: color 0.3s, transform 0.3s;
     }
 
     nav ul li a:hover {
       color: #ffd700;
+      transform: translateY(-2px);
     }
 
-    /* Hamburger */
     .hamburger {
       display: none;
       flex-direction: column;
@@ -71,23 +80,28 @@
     }
 
     .hamburger div {
-      width: 25px;
+      width: 28px;
       height: 3px;
       background: white;
       margin: 4px;
+      border-radius: 2px;
+      transition: 0.4s;
     }
 
+    /* Mobile nav */
     @media (max-width: 768px) {
       nav ul {
         display: none;
         flex-direction: column;
         background: rgb(97, 45, 2);
         position: absolute;
-        top: 60px;
+        top: 70px;
         right: 20px;
-        width: 200px;
+        width: 220px;
         border-radius: 8px;
-        padding: 10px 0;
+        padding: 15px 0;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        animation: slideDown 0.4s ease;
       }
       nav ul.show {
         display: flex;
@@ -99,21 +113,82 @@
 
     /* Hero Section */
     .hero {
-      background: url("hotel-hero.jpg") center/cover no-repeat;
-      height: 70vh;
+      height: 90vh;
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+        url("https://images.unsplash.com/photo-1566073771259-6a8506099945") center/cover no-repeat;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      color: white;
       text-align: center;
-      padding: 20px;
+      color: #ffd700;
+      animation: fadeIn 2s ease-in-out;
+      padding: 0 20px;
     }
 
     .hero h1 {
-      font-size: 2.5rem;
-      background: rgba(0,0,0,0.5);
-      padding: 15px 20px;
-      border-radius: 10px;
+      font-size: 2.8rem;
+      margin-bottom: 10px;
+      animation: slideUp 1.2s ease-in-out;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #f5f5f5;
+      max-width: 700px;
+      margin: auto;
+      animation: fadeIn 2.2s ease-in-out;
+    }
+
+    /* Main Section */
+    main {
+      max-width: 1100px;
+      margin: 50px auto;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    main h2 {
+      color: #ffd700;
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+      position: relative;
+      display: inline-block;
+    }
+
+    main h2::after {
+      content: "";
+      display: block;
+      width: 50px;
+      height: 3px;
+      background: #ffd700;
+      margin: 10px auto 0;
+      border-radius: 2px;
+    }
+
+    main p {
+      font-size: 1.1rem;
+      color: #ddd;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* CTA */
+    .cta {
+      margin-top: 40px;
+      display: inline-block;
+      padding: 12px 28px;
+      background: #ffd700;
+      color: #000;
+      border-radius: 30px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.4s ease;
+    }
+
+    .cta:hover {
+      background: #c99e00;
+      transform: scale(1.05);
     }
 
     /* Footer */
@@ -121,8 +196,9 @@
       background: rgb(97, 45, 2);
       color: white;
       text-align: center;
-      padding: 20px;
-      margin-top: 40px;
+      padding: 25px;
+      margin-top: 60px;
+      box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.4);
     }
 
     .footer-container {
@@ -131,10 +207,11 @@
     }
 
     .socials a {
-      margin: 0 10px;
+      margin: 0 8px;
       color: white;
       text-decoration: none;
       font-size: 1.2rem;
+      transition: color 0.3s ease;
     }
 
     .socials a:hover {
@@ -146,10 +223,52 @@
       font-size: 0.9rem;
       color: #ccc;
     }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(30px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
   </style>
 </head>
 <body>
-
   <!-- Navbar -->
   <header>
     <div class="nav-container">
@@ -164,29 +283,35 @@
         </ul>
       </nav>
       <div class="hamburger" id="hamburger">
-        <div></div><div></div><div></div>
+        <div></div>
+        <div></div>
+        <div></div>
       </div>
     </div>
   </header>
 
   <!-- Hero Section -->
   <section class="hero">
-    <h1>Welcome to Minista of Enjoyment Lounge and Suites</h1>
+    <h1>Welcome to Minista of Enjoyment Lounge & Suites</h1>
+    <p>Where luxury meets comfort — experience top-class relaxation and unforgettable moments.</p>
   </section>
 
-  <!-- Content -->
-  <main style="max-width: 1000px; margin: 40px auto; padding: 0 20px; text-align: center; color: gold;">
+  <!-- Main -->
+  <main>
     <h2>Luxury & Comfort</h2>
-    <p>Experience the best hospitality with world-class services and elegant rooms.</p>
+    <p>
+      Discover elegance in every corner — world-class service, stylish rooms, and exceptional hospitality await you at Minista of Enjoyment Lounge and Suites.
+    </p>
+    <a href="rooms.html" class="cta">Explore Rooms</a>
   </main>
 
   <!-- Footer -->
   <footer>
     <div class="footer-container">
-      <p>📍 Ikeja, Lagos, Nigeria | 📞 +234 801 234 5678 | ✉️ info@enjoymenthotel.com</p>
+      <p>📍 Ikeja, Lagos, Nigeria | 📞 +234 801 234 5678 | ✉ info@enjoymenthotel.com</p>
       <div class="socials">
-        <a href="#">Facebook</a> | 
-        <a href="#">Instagram</a> | 
+        <a href="#">Facebook</a> |
+        <a href="#">Instagram</a> |
         <a href="#">Twitter</a>
       </div>
       <div class="copyright">
@@ -195,7 +320,7 @@
     </div>
   </footer>
 
-  <!-- Mobile Menu Script -->
+  <!-- Mobile Menu -->
   <script>
     const hamburger = document.getElementById("hamburger");
     const navLinks = document.getElementById("nav-links");
@@ -204,6 +329,5 @@
       navLinks.classList.toggle("show");
     });
   </script>
-
 </body>
 </html>

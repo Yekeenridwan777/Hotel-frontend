@@ -3,34 +3,129 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Club — Coming Soon</title>
+  <title>Minista Club — Coming Soon</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
-      background-color: #0e0e0e;
+      background: radial-gradient(circle at top, #1a0d02, #000);
       color: white;
-      font-family: Arial, sans-serif;
+      font-family: 'Poppins', sans-serif;
       text-align: center;
-      padding-top: 150px;
+      overflow-x: hidden;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
     }
+
+    /* Neon glow animation */
+    @keyframes neonGlow {
+      0%, 100% { text-shadow: 0 0 5px #f0b90b, 0 0 20px #f0b90b, 0 0 40px rgb(97,45,2); }
+      50% { text-shadow: 0 0 10px #ff007f, 0 0 30px #f0b90b, 0 0 60px rgb(97,45,2); }
+    }
+
+    /* Floating animation for logo & text */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
     h1 {
-      font-size: 3rem;
-      color: #ff007f;
+      font-size: 3.2rem;
+      color: #f0b90b;
+      animation: neonGlow 3s infinite, float 4s ease-in-out infinite;
+      margin-bottom: 15px;
     }
+
     p {
       font-size: 1.2rem;
-      color: #ccc;
+      color: #e0e0e0;
+      max-width: 500px;
+      line-height: 1.6;
+      margin: 0 auto 25px;
+      animation: float 5s ease-in-out infinite;
     }
+
     a {
-      color: #28a745;
+      color: white;
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 600;
+      border: 2px solid #f0b90b;
+      padding: 10px 25px;
+      border-radius: 30px;
+      transition: 0.3s;
+      background: transparent;
+      box-shadow: 0 0 10px #f0b90b;
+    }
+
+    a:hover {
+      background: rgb(97,45,2);
+      color: white;
+      transform: scale(1.1);
+      box-shadow: 0 0 25px #f0b90b, 0 0 40px rgb(97,45,2);
+    }
+
+    /* Animated light beams */
+    .light-beam {
+      position: absolute;
+      top: -50%;
+      width: 2px;
+      height: 200%;
+      background: linear-gradient(transparent, rgba(240,185,11,0.3), transparent);
+      animation: moveBeam 5s linear infinite;
+    }
+
+    @keyframes moveBeam {
+      0% { transform: translateX(-10vw) rotate(25deg); opacity: 0.3; }
+      50% { transform: translateX(50vw) rotate(25deg); opacity: 0.6; }
+      100% { transform: translateX(110vw) rotate(25deg); opacity: 0.3; }
+    }
+
+    .light-beam:nth-child(1) { left: 10%; animation-delay: 0s; }
+    .light-beam:nth-child(2) { left: 40%; animation-delay: 2s; }
+    .light-beam:nth-child(3) { left: 70%; animation-delay: 4s; }
+
+    footer {
+      position: absolute;
+      bottom: 15px;
+      font-size: 0.9rem;
+      color: #ccc;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    footer span {
+      color: #f0b90b;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      h1 { font-size: 2.2rem; }
+      p { font-size: 1rem; }
+      a { padding: 8px 20px; font-size: 0.9rem; }
     }
   </style>
 </head>
 <body>
+  <div class="light-beam"></div>
+  <div class="light-beam"></div>
+  <div class="light-beam"></div>
+
   <h1>🍾 Club Coming Soon</h1>
-  <p>We're preparing something exciting for you! Stay tuned for our new Club Lounge experience.</p>
-  <br>
+  <p>We're preparing something exciting and unforgettable at <strong>Minista of Enjoyment Lounge & Suites</strong>.<br>Stay tuned for the grand opening of our Club Lounge!</p>
+  
   <a href="index.html">← Back to Home</a>
+
+  <footer>
+    © <span>2025</span> Minista of Enjoyment Lounge & Suites
+  </footer>
 </body>
 </html>
