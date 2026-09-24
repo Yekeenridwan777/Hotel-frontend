@@ -1,33 +1,83 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Our Rooms - Minista of Enjoyment Hotel</title>
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Rooms - Minista of Enjoyment Hotel</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon.png"/>
   <style>
-    body {
-      font-family: "Poppins", sans-serif;
-      background: #f8f9fa;
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden;
-    }
-
-    /* Navbar */
-    header {
-      background: rgb(97, 45, 2);
-      color: #fff;
-      padding: 15px 20px;
+    nav {
+    display: flex;
+    align-items: center;
+  }
+    .nav-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
+  nav ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  margin: 0;
+  padding: 0;
+  }
+  nav ul li {
+      display: block;
+  }
+  nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+  }
+  nav ul li a:hover {
+  color: #d4af37;
+  }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background: url("img/HOBM5380.JPG") no-repeat center center fixed;
+      background-size: cover;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Overlay for blur effect */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      rgba(11, 13, 23, 0.88),
+      rgba(11, 13, 23, 0.82)
+    );
+    z-index: -1;
+  }
+    /* Navbar */
+    header {
+    background: rgba(11, 13, 23, 0.75);
+    backdrop-filter: blur(8px);
+    color: #fff;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  }
     header h1 {
       margin: 0;
       font-size: 20px;
@@ -42,7 +92,7 @@
       transition: color 0.3s;
     }
     nav a:hover {
-      color: gold;
+      color: #d4af37;
     }
 
     /* Rooms grid */
@@ -54,16 +104,18 @@
     }
 
     .room-card {
-      background: #fff;
-      border-radius: 14px;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
+    background: rgba(255, 255, 255, 0.97);
+    border-radius: 14px;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
 
     .room-card:hover {
       transform: translateY(-8px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
     }
 
     .room-card img {
@@ -83,10 +135,10 @@
     }
 
     .room-info h2 {
-      margin: 0 0 10px;
-      font-size: 20px;
-      color: #333;
-    }
+    margin: 0 0 10px;
+    font-size: 20px;
+    color: #0b0d17;
+  }
 
     .room-info p {
       color: #555;
@@ -96,21 +148,23 @@
     }
 
     .room-info button {
-      width: 100%;
-      padding: 12px;
-      background: rgb(97, 45, 2);
-      color: #fff;
-      font-size: 16px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background 0.3s ease, transform 0.2s ease;
-    }
+    width: 100%;
+    padding: 12px;
+    background: #d4af37 !important;
+    color: #0b0d17 !important;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+  }
 
-    .room-info button:hover {
-      background: rgb(243, 101, 6);
-      transform: scale(1.02);
-    }
+
+  .room-info button:hover {
+    background: #c9a227;
+    transform: scale(1.02);
+  }
 
     /* Booking modal */
     .modal {
@@ -127,49 +181,54 @@
       animation: fadeIn 0.3s ease;
     }
 
-    .modal-content {
-      background: #fff;
-      padding: 25px;
-      border-radius: 14px;
-      width: 400px;
-      max-width: 90%;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-      animation: slideUp 0.4s ease;
-    }
+  .modal-content {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 14px;
+    width: 400px;
+    max-width: 90%;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    animation: slideUp 0.4s ease;
+    border-top: 4px solid #d4af37;
+  }
 
     .modal-content h3 {
-      margin-top: 0;
-      text-align: center;
-      color: rgb(97, 45, 2);
-      font-size: 20px;
-    }
+    margin-top: 0;
+    text-align: center;
+    color: #0b0d17;
+    font-size: 20px;
+  }
 
     .modal-content input {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      font-size: 15px;
-    }
-
-    .modal-content button {
-      width: 100%;
-      padding: 12px;
-      background: rgb(97, 45, 2);
-      color: #fff;
-      font-size: 16px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      margin-top: 10px;
-      transition: background 0.3s ease, transform 0.2s ease;
-    }
-
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #d4af37;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+    box-sizing: border-box;
+  }
+  .modal-content input:focus {
+    border-color: #d4af37;
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+  }
+  .modal-content button {
+    width: 100%;
+    padding: 12px;
+    background: #d4af37;
+    color: #0b0d17;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+  }
     .modal-content button:hover {
-      background: rgb(243, 101, 6);
-      transform: scale(1.02);
-    }
+    background: #c9a227;
+    transform: scale(1.02);
+  }
 
     .close-btn {
       background: #777;
@@ -182,13 +241,13 @@
     }
 
     /* Footer */
-    footer {
-      background: rgb(97, 45, 2);
-      color: white;
-      text-align: center;
-      padding: 25px 10px;
-      margin-top: 40px;
-    }
+  footer {
+    background: #0b0d17;
+    color: white;
+    text-align: center;
+    padding: 25px 10px;
+    margin-top: 40px;
+  }
 
     footer p {
       margin: 5px 0;
@@ -202,264 +261,345 @@
       transition: color 0.3s;
     }
 
-    footer a:hover {
-      color: gold;
-    }
+  footer a:hover {
+    color: #d4af37;
+  }
 
     /* Animations */
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     @keyframes fadeInDown {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes slideUp {
-      from {
-        transform: translateY(30px);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
 
     /* 📱 Responsive */
-    @media (max-width: 600px) {
-      nav a {
-        font-size: 14px;
-        margin: 0 5px;
-      }
-      .rooms-container {
-        padding: 20px;
-        gap: 15px;
-      }
-      .modal-content {
-        width: 95%;
-        padding: 15px;
-      }
+
+
+  /* Mobile nav */
+  @media (min-width: 769px) {
+
+    nav ul {
+      display: flex !important;
     }
+
+    .hamburger {
+      display: none !important;
+    }
+  }
+  @media (max-width: 768px) {
+
+    nav ul {
+      display: none !important;
+      flex-direction: column;
+      background: rgba(11, 13, 23, 0.95);
+      position: absolute;
+      top: 80px;
+      right: 20px;
+      width: 220px;
+      border-radius: 8px;
+      padding: 15px 0;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+      z-index: 1000;
+    }
+
+    nav ul.show {
+      display: flex !important;
+    }
+
+    .hamburger {
+      display: flex !important;
+    }
+
+    .logo img {
+      height: 60px;
+    }
+
+    .rooms-container {
+      padding: 20px;
+      gap: 15px;
+    }
+
+    .modal-content {
+      width: 95%;
+      padding: 15px;
+    }
+  }
+
+    .logo img {
+      height: 60px; 
+      width: auto;
+      transition: transform 0.3s ease;
+      opacity: 0.9;
+    }
+    .logo img:hover { 
+      transform: scale(1.05); 
+      opacity: 1;
+    }
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+
+  }
+
+  .hamburger div {
+    width: 28px;
+    height: 3px;
+    background: #fff;
+    margin: 4px;
+    border-radius: 2px;
+  }
   </style>
-</head>
-<body>
-  <!-- Navbar -->
-  <header data-aos="fade-down">
-    <h1>Minista of Enjoyment Lounge and Suites</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="rooms.html">Rooms</a>
-      <a href="lounge.html">Lounge Booking</a>
-      <a href="club.html">Club</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
 
-  <!-- Rooms Section -->
-  <div class="rooms-container">
-    <div class="room-card room" data-room="Room 1" data-aos="fade-up" data-aos-delay="100">
-      <img src="img/KWQB4969.JPG" alt="Room 1" />
-      <div class="room-info">
-        <h2>Room 1</h2>
-        <p>Spacious room with king-sized bed, air conditioning, high-speed Wi-Fi, and a TV, plus open access to our main hotel lounge.</p>
-        <button onclick="openBooking('Room 1')">Book Now</button>
-      </div>
-    </div>
-
-    <div class="room-card room" data-room="Room 2" data-aos="fade-up" data-aos-delay="200">
-      <img src="img/VOYZ5723.JPG" alt="Room 2" />
-      <div class="room-info">
-        <h2>Room 2</h2>
-        <p>Unwind in comfort featuring a king-sized bed, air conditioning, high-speed Wi-Fi, and a TV, plus open access to our main hotel lounge.</p>
-        <button onclick="openBooking('Room 2')">Book Now</button>
-      </div>
-    </div>
-
-    <div class="room-card room" data-room="Room 3" data-aos="fade-up" data-aos-delay="300">
-      <img src="https://picsum.photos/400/200?random=3" alt="Room 3" />
-      <div class="room-info">
-        <h2>Room 3</h2>
-        <p>Comfortable room with queen bed, desk, and complimentary Wi-Fi.</p>
-        <button onclick="openBooking('Room 3')">Book Now</button>
-      </div>
-    </div>
-
-    <div class="room-card room" data-room="Room 4" data-aos="fade-up" data-aos-delay="400">
-      <img src="https://picsum.photos/400/200?random=4" alt="Room 4" />
-      <div class="room-info">
-        <h2>Room 4</h2>
-        <p>large room with queen bed, desk, and complimentary Wi-Fi.</p>
-        <button onclick="openBooking('Room 4')">Book Now</button>
-      </div>
-    </div>
-
-    <div class="room-card room" data-room="Room 5" data-aos="fade-up" data-aos-delay="500">
-      <img src="https://picsum.photos/400/200?random=5" alt="Room 5" />
-      <div class="room-info">
-        <h2>Room 5</h2>
-        <p>Exclusive suite queen bed, desk, and complimentary Wi-Fi.</p>
-        <button onclick="openBooking('Room 5')">Book Now</button>
-      </div>
-    </div>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <header>
+      <div class="nav-container">
+        <div class="logo">
+    <img src="img/QHTZ5397.png" alt="Minista of Enjoyment Logo">
   </div>
+        <nav>
+          <ul id="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="rooms.html">Rooms</a></li>
+            <li><a href="lounge.html">Lounge Booking</a></li>
+            <li><a href="club.html">Club</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
 
-  <!-- Booking Modal -->
-  <div id="bookingModal" class="modal">
-    <div class="modal-content">
-      <h3 id="roomName">Book Room</h3>
-      <form id="bookingForm">
-        <input type="text" id="guestName" placeholder="Your Name" required />
-        <input type="email" id="guestEmail" placeholder="Your Email" required />
-        <input type="tel" id="guestPhone" placeholder="Your Phone Number" required />
-        <input type="date" id="checkIn" required />
-        <input type="date" id="checkOut" required />
-        <input type="number" id="guests" placeholder="Number of Guests" min="1" required />
-        <button type="submit">Confirm Booking</button>
-        <button type="button" class="close-btn" onclick="closeBooking()">Cancel</button>
-      </form>
-      <div class="message" id="bookingMsg"></div>
+          </ul>
+        </nav>
+        <div class="hamburger" id="hamburger">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Rooms Section -->
+    <div class="rooms-container">
+      <div class="room-card room" data-room="Room 901" data-aos="fade-up" data-aos-delay="100">
+        <img src="img/KWQB4969.JPG" alt="Room 901" />
+        <div class="room-info">
+          <h2>Room 901</h2>
+          <p>Spacious room with king-sized bed, air conditioning, high-speed Wi-Fi, and a TV, plus open access to our main hotel lounge.</p>
+          <button onclick="openBooking('Room 901')">Book Now</button>
+        </div>
+      </div>
+
+      <div class="room-card room" data-room="Room 902" data-aos="fade-up" data-aos-delay="200">
+        <img src="img/VOYZ5723.JPG" alt="Room 902" />
+        <div class="room-info">
+          <h2>Room 902</h2>
+          <p>Unwind in comfort featuring a king-sized bed, air conditioning, high-speed Wi-Fi, and a TV, plus open access to our main hotel lounge.</p>
+          <button onclick="openBooking('Room 902')">Book Now</button>
+        </div>
+      </div>
+
+      <div class="room-card room" data-room="Room 903" data-aos="fade-up" data-aos-delay="300">
+        <img src="https://picsum.photos/400/200?random=3" alt="Room 903" />
+        <div class="room-info">
+          <h2>Room 903</h2>
+          <p>Comfortable room with queen bed,air conditioning, desk, a TV, and complimentary Wi-Fi.</p>
+          <button onclick="openBooking('Room 903')">Book Now</button>
+        </div>
+      </div>
+
+      <div class="room-card room" data-room="Room 904" data-aos="fade-up" data-aos-delay="400">
+        <img src="https://picsum.photos/400/200?random=4" alt="Room 904" />
+        <div class="room-info">
+          <h2>Room 904</h2>
+          <p>large room with queen bed, desk, air conditioning, a TV, and complimentary Wi-Fi.</p>
+          <button onclick="openBooking('Room 904')">Book Now</button>
+        </div>
+      </div>
+
+      <div class="room-card room" data-room="Room 905" data-aos="fade-up" data-aos-delay="500">
+        <img src="https://picsum.photos/400/200?random=5" alt="Room 905" />
+        <div class="room-info">
+          <h2>Room 905</h2>
+          <p>Exclusive suite king-sized bed, desk, air conditioning, a TV, and complimentary Wi-Fi.</p>
+          <button onclick="openBooking('Room 905')">Book Now</button>
+        </div>
+      </div>
     </div>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="modal">
+      <div class="modal-content">
+        <h3 id="roomName">Book Room</h3>
+        <form id="bookingForm">
+          <input type="text" id="guestName" placeholder="Your Name" required />
+          <input type="email" id="guestEmail" placeholder="Your Email" required />
+          <input type="tel" id="guestPhone" placeholder="Your Phone Number" required />
+          <input type="date" id="checkIn" required />
+          <input type="date" id="checkOut" required />
+          <input type="number" id="guests" placeholder="Number of Guests" min="1" required />
+          <button type="submit">Confirm Booking</button>
+          <button type="button" class="close-btn" onclick="closeBooking()">Cancel</button>
+        </form>
+        <div class="message" id="bookingMsg"></div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+  <footer>
+      <div class="footer-container">
+        <p>
+    📍 <a href="https://maps.app.goo.gl/Jxc9p8vb6CEBwdFr5?g_st=ic" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline;">Ibeju lekki, Lagos, Nigeria</a> | 
+    📞 +234 8067762559 | 
+    ✉ info@ministaofenjoyment.com
+  </p>
+        <div class="socials">
+    
+    <!-- Instagram -->
+    <a href="https://www.instagram.com/ministaofenjoyment" target="_blank" rel="noopener noreferrer">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+      </svg>
+    </a> |
+
+    <!-- TikTok -->
+    <a href="https://www.tiktok.com/@ministaofenjoymentltd" target="_blank" rel="noopener noreferrer">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.29-2.73.73-5.5 2.68-7.4 1.84-1.8 4.47-2.6 7.02-2.12v4.29c-1.14-.38-2.43-.28-3.48.27-1.2.6-2.04 1.78-2.19 3.11-.2 1.56.52 3.14 1.83 3.96 1.18.77 2.72.84 3.98.2 1.05-.51 1.76-1.57 1.86-2.73.04-2.82.02-5.65.02-8.47 0-1.29.01-2.58 0-3.87z"/>
+      </svg>
+    </a>
   </div>
+        <div class="copyright">
+          &copy; 2026 Minista of Enjoyment Hotel. All Rights Reserved.
+        </div>
+      </div>
+    </footer>
 
-  <!-- Footer -->
-  <footer data-aos="fade-up">
-    <p>&copy; 2025 Minista of Enjoyment Lounge and Suites. All rights reserved.</p>
-    <p>
-      Follow us:
-      <a href="#">Facebook</a> |
-      <a href="#">Instagram</a> |
-      <a href="#">Twitter</a>
-    </p>
-  </footer>
 
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    AOS.init({ duration: 800, once: true });
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({ duration: 800, once: true });
 
-    const modal = document.getElementById("bookingModal");
-    const roomNameDisplay = document.getElementById("roomName");
-    const bookingMsg = document.getElementById("bookingMsg");
-    const bookingForm = document.getElementById("bookingForm");
-    let selectedRoom = "";
+      const modal = document.getElementById("bookingModal");
+      const roomNameDisplay = document.getElementById("roomName");
+      const bookingMsg = document.getElementById("bookingMsg");
+      const bookingForm = document.getElementById("bookingForm");
+      let selectedRoom = "";
 
-    function openBooking(room) {
-      selectedRoom = room;
-      roomNameDisplay.textContent = "Book " + room;
-      modal.style.display = "flex";
-      bookingMsg.textContent = "";
-    }
+      function openBooking(room) {
+        selectedRoom = room;
+        roomNameDisplay.textContent = "Book " + room;
+        modal.style.display = "flex";
+        bookingMsg.textContent = "";
+      }
 
-    function closeBooking() {
-      modal.style.display = "none";
-      bookingForm.reset();
-    }
+      function closeBooking() {
+        modal.style.display = "none";
+        bookingForm.reset();
+      }
 
-    bookingForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      bookingMsg.textContent = "⏳ Sending...";
-      bookingMsg.style.color = "black";
+      bookingForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        bookingMsg.textContent = "⏳ Sending...";
+        bookingMsg.style.color = "black";
 
-      const data = {
-        name: document.getElementById("guestName").value,
-        email: document.getElementById("guestEmail").value,
-        phone: document.getElementById("guestPhone").value,
-        checkIn: document.getElementById("checkIn").value,
-        checkOut: document.getElementById("checkOut").value,
-        guests: document.getElementById("guests").value,
-        room: selectedRoom,
-      };
+        const data = {
+          name: document.getElementById("guestName").value,
+          email: document.getElementById("guestEmail").value,
+          phone: document.getElementById("guestPhone").value,
+          checkIn: document.getElementById("checkIn").value,
+          checkOut: document.getElementById("checkOut").value,
+          guests: document.getElementById("guests").value,
+          room: selectedRoom,
+        };
 
-      try {
-        const res = await fetch("https://hotel-booking-oujg.onrender.com/book", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data),
-        });
+        try {
+          const res = await fetch("https://hotel-booking-oujg.onrender.com/book", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+          });
 
-        const result = await res.json();
+          const result = await res.json();
 
-        if (result.success) {
-          bookingMsg.textContent = "✅ Booking request sent successfully!";
-          bookingMsg.style.color = "green";
-          bookingForm.reset();
-          setTimeout(closeBooking, 2000);
-        } else {
-          bookingMsg.textContent = "❌ Could not send booking request.";
+          if (result.success) {
+            bookingMsg.textContent = "✅ Booking request sent successfully!";
+            bookingMsg.style.color = "green";
+            bookingForm.reset();
+            setTimeout(closeBooking, 2000);
+          } else {
+            bookingMsg.textContent = "❌ Could not send booking request.";
+            bookingMsg.style.color = "red";
+          }
+        } catch (error) {
+          bookingMsg.textContent = "⚠ Server error. Try again later.";
           bookingMsg.style.color = "red";
         }
-      } catch (error) {
-        bookingMsg.textContent = "⚠ Server error. Try again later.";
-        bookingMsg.style.color = "red";
+      });
+
+      window.onclick = (e) => {
+        if (e.target === modal) closeBooking();
+      };
+
+      async function updateRoomAvailability() {
+        try {
+          const res = await fetch("https://hotel-booking-oujg.onrender.com/api/rooms/status");
+          const data = await res.json();
+          if (!data.success) return;
+
+          const bookedRooms = {};
+          data.rooms.forEach((r) => {
+            if (r.status === "booked") {
+              bookedRooms[r.name.trim().toLowerCase()] = true;
+            }
+          });
+
+          document.querySelectorAll(".room").forEach((roomDiv) => {
+            const roomName = roomDiv.getAttribute("data-room").trim().toLowerCase();
+            const btn = roomDiv.querySelector("button");
+
+            if (bookedRooms[roomName]) {
+              btn.disabled = true;
+              btn.textContent = "Booked";
+              btn.style.background = "#999";
+              btn.style.cursor = "not-allowed";
+              roomDiv.style.opacity = "0.7";
+            } else {
+              btn.disabled = false;
+              btn.textContent = "Book Now";
+              btn.style.background = "#d4af37";
+              btn.style.color = "#0b0d17";
+              btn.style.cursor = "pointer";
+              roomDiv.style.opacity = "1";
+            }
+          });
+        } catch (err) {
+          console.error("Error fetching room status:", err);
+        }
       }
-    });
 
-    window.onclick = (e) => {
-      if (e.target === modal) closeBooking();
-    };
-
-    async function updateRoomAvailability() {
-      try {
-        const res = await fetch("https://hotel-booking-oujg.onrender.com/api/rooms/status");
-        const data = await res.json();
-        if (!data.success) return;
-
-        const bookedRooms = {};
-        data.rooms.forEach((r) => {
-          if (r.status === "booked") {
-            bookedRooms[r.name.trim().toLowerCase()] = true;
-          }
-        });
-
-        document.querySelectorAll(".room").forEach((roomDiv) => {
-          const roomName = roomDiv.getAttribute("data-room").trim().toLowerCase();
-          const btn = roomDiv.querySelector("button");
-
-          if (bookedRooms[roomName]) {
-            btn.disabled = true;
-            btn.textContent = "Booked";
-            btn.style.background = "#999";
-            btn.style.cursor = "not-allowed";
-            roomDiv.style.opacity = "0.7";
-          } else {
-            btn.disabled = false;
-            btn.textContent = "Book Now";
-            btn.style.background = "rgb(97, 45, 2)";
-            btn.style.cursor = "pointer";
-            roomDiv.style.opacity = "1";
-          }
-        });
-      } catch (err) {
-        console.error("Error fetching room status:", err);
-      }
-    }
-
-    updateRoomAvailability();
-    setInterval(updateRoomAvailability, 30000);
-  </script>
-</body>
-</html>
+      updateRoomAvailability();
+      setInterval(updateRoomAvailability, 30000);
+      const hamburger = document.getElementById("hamburger");
+  const navLinks = document.getElementById("nav-links");
+   
+  hamburger.addEventListener("click", () => {
+  navLinks.classList.toggle("show");
+  });
+    </script>
+  </body>
+  </html>
 
