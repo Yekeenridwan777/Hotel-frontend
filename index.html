@@ -158,8 +158,122 @@
     max-width: 700px;
     margin: 0 auto;
   }
+/* Lounge Section */
+.lounge-section {
+  background: #17120e;
+  color: #f5eee4;
+  padding: 90px 20px;
+}
 
-  /* Gallery Section (Home Preview) */
+.lounge-image {
+  max-width: 1100px;
+  margin: 0 auto 80px;
+}
+
+.lounge-image img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  border-radius: 6px;
+  display: block;
+}
+
+.lounge-content {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.lounge-label {
+  display: block;
+  font-size: 1.2rem;
+  color: #cfc3b8;
+  margin-bottom: 12px;
+}
+
+.lounge-content h2 {
+  max-width: 650px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 3rem;
+  line-height: 1.15;
+  color: #f5eee4;
+  margin-bottom: 35px;
+}
+
+.lounge-content p {
+  max-width: 850px;
+  font-size: 1.2rem;
+  line-height: 1.9;
+  color: #cfc5bc;
+  margin-bottom: 40px;
+}
+
+.lounge-button,
+.lounge-outline-button {
+  display: inline-block;
+  padding: 17px 45px;
+  border-radius: 7px;
+  text-decoration: none;
+  font-size: 1.05rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.lounge-button {
+  background: #d1a545;
+  color: #17120e;
+  margin-right: 15px;
+}
+
+.lounge-button:hover {
+  background: #e0ba5c;
+  transform: translateY(-3px);
+}
+
+.lounge-outline-button {
+  color: #f5eee4;
+  border: 2px solid #756d65;
+}
+
+.lounge-outline-button:hover {
+  background: #f5eee4;
+  color: #17120e;
+  border-color: #f5eee4;
+}
+
+
+/* Mobile */
+@media (max-width: 768px) {
+  .lounge-section {
+    padding: 70px 20px;
+  }
+
+  .lounge-image {
+    margin-bottom: 65px;
+  }
+
+  .lounge-image img {
+    height: 245px;
+  }
+
+  .lounge-content h2 {
+    font-size: 2.5rem;
+    line-height: 1.15;
+    margin-bottom: 30px;
+  }
+
+  .lounge-content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+  }
+
+  .lounge-button,
+  .lounge-outline-button {
+    width: 100%;
+    text-align: center;
+    margin: 0 0 15px;
+  }
+}
+  /*the Gallery Section (Home Preview) */
   .gallery-home {
     background-color: #0b0d17;
     text-align: center;
@@ -187,7 +301,68 @@
     transition: transform 0.3s ease;
   }
   .gallery-grid img:hover { transform: scale(1.03); }
+/* Planning a Stay Section */
+.stay-section {
+  background: #722b39;
+  color: #f5eee4;
+  padding: 100px 20px;
+  text-align: center;
+}
 
+.stay-content {
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+.stay-section h2 {
+  font-family: Georgia, serif;
+  font-size: 2.5rem;
+  margin-bottom: 25px;
+  color: #f5eee4;
+}
+
+.stay-section p {
+  font-size: 1.25rem;
+  line-height: 1.8;
+  color: #eadfd5;
+  margin-bottom: 40px;
+}
+
+.stay-button {
+  display: inline-block;
+  padding: 16px 45px;
+  background: #d1a545;
+  color: #17120e;
+  text-decoration: none;
+  font-size: 1.05rem;
+  font-weight: 600;
+  border-radius: 7px;
+  transition: all 0.3s ease;
+}
+
+.stay-button:hover {
+  background: #e0ba5c;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+@media (max-width: 768px) {
+  .stay-section {
+    padding: 80px 20px;
+  }
+
+  .stay-section h2 {
+    font-size: 2.2rem;
+  }
+
+  .stay-section p {
+    font-size: 1.1rem;
+  }
+
+  .stay-button {
+    padding: 15px 40px;
+  }
+  }
   /* Features Section */
   .features {
     display: grid;
@@ -342,6 +517,28 @@
     </p>
     <a href="rooms.html" class="cta">Explore Rooms</a>
   </main>
+  <!-- Lounge Section -->
+<section class="lounge-section">
+  <div class="lounge-image">
+    <img src="img/lounge.jpg" alt="Minista of Enjoyment Lounge">
+  </div>
+
+  <div class="lounge-content">
+    <span class="lounge-label">The Lounge</span>
+
+    <h2>Good drinks, better company</h2>
+
+    <p>
+      Whether it's a table for two or a full birthday takeover, our lounge
+      team will hold the space and set it up the way you want it.
+      Corporate evenings and private parties welcome.
+    </p>
+
+    <a href="lounge.html" class="lounge-button">Book the Lounge</a>
+
+    <a href="about.html" class="lounge-outline-button">About the Club</a>
+  </div>
+</section>
 <section class="gallery-home">
   <h2>Our Gallery</h2>
   <p>Explore our stunning space, premium rooms, lounge, and serene environment where comfort and elegance come together.</p>
@@ -376,7 +573,16 @@
     <p>Exceptional hospitality at every touchpoint.</p>
   </div>
 </section>
-
+<!-- Planning a Stay Section -->
+<section class="stay-section">
+  <div class="stay-content">
+    <h2>Planning a stay in Lagos?</h2>
+    <p>
+      Send us your dates and we'll hold a room while you decide on the rest.
+    </p>
+    <a href="contact.html" class="stay-button">Get in Touch</a>
+  </div>
+</section>
   <!-- Footer -->
   <footer>
     <div class="footer-container">
@@ -386,7 +592,12 @@
   ✉ info@ministaofenjoyment.com
 </p>
       <div class="socials">
-  
+  <!-- WhatsApp -->
+<a href="https://wa.me/2348067762559" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+    <path d="M20.52 3.48A11.86 11.86 0 0 0 12.08 0C5.53 0 .2 5.33.2 11.88c0 2.09.55 4.13 1.6 5.93L.1 24l6.33-1.66a11.86 11.86 0 0 0 5.65 1.44h.01c6.55 0 11.88-5.33 11.88-11.88 0-3.18-1.24-6.16-3.45-8.42zM12.09 21.8h-.01a9.87 9.87 0 0 1-5.03-1.37l-.36-.21-3.76.99 1-3.66-.23-.38a9.86 9.86 0 0 1-1.51-5.29C2.19 6.43 6.62 2 12.08 2a9.82 9.82 0 0 1 6.99 2.9 9.86 9.86 0 0 1 2.9 7c0 5.46-4.43 9.9-9.88 9.9zm5.42-7.42c-.3-.15-1.78-.88-2.05-.98-.27-.1-.47-.15-.67.15-.2.3-.77.98-.94 1.18-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.47-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.05 1.03-1.05 2.51s1.08 2.91 1.23 3.11c.15.2 2.13 3.25 5.16 4.56.72.31 1.28.5 1.72.64.72.23 1.38.2 1.9.12.58-.09 1.78-.73 2.03-1.43.25-.7.25-1.3.17-1.43-.08-.12-.27-.2-.57-.35z"/>
+  </svg>
+</a>
   <!-- Instagram -->
   <a href="https://www.instagram.com/ministaofenjoyment" target="_blank" rel="noopener noreferrer">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
